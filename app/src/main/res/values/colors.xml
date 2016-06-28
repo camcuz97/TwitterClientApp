@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="handle_color" type="color">#B7C0C8</item>
+    <item name="logo_blue" type="color">#1DA1F2</item>
+    <item name="background_white" type="color">#FFFFFF</item>
+</resources>

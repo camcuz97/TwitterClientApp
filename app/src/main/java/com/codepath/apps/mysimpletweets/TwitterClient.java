@@ -25,9 +25,9 @@ import org.scribe.builder.api.TwitterApi;
  */
 public class TwitterClient extends OAuthBaseClient {
 	public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class; // Change this
-	public static final String REST_URL = "https://api.twitter.com/1.1/"; // Change this, base API URL
-	public static final String REST_CONSUMER_KEY = "Jwq6tnaqIwgtgiyK27ICcfk58";       // Change this
-	public static final String REST_CONSUMER_SECRET = "YyywGchpjUKT1Vur3mZ4MAc9sHcv9sC82yQnmSCiTvt2aRCdrs"; // Change this
+	public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
+	public static final String REST_CONSUMER_KEY = "rfgdXA4VMzyRvmJNUgibmb6Kt";       // Change this
+	public static final String REST_CONSUMER_SECRET = "egtOHduFqXmOoe6Uw46Rx2hGLHGiCcZUqQtnGqayNe8GZ99v4Z"; // Change this
 	public static final String REST_CALLBACK_URL = "oauth://cpsimpletweets"; // Change this (here and in manifest)
 
 	public TwitterClient(Context context) {
@@ -69,6 +69,14 @@ public class TwitterClient extends OAuthBaseClient {
 	public void getUserInfo(AsyncHttpResponseHandler handler){
 		String apiUrl = getApiUrl("account/verify_credentials.json");
 		getClient().get(apiUrl, null, handler);
+	}
+
+	public void postStatus(String status, AsyncHttpResponseHandler handler){
+		String apiUrl = getApiUrl("statuses/update.json");
+		RequestParams params = new RequestParams();
+		params.put("status", status);
+		getClient().post(apiUrl, params, handler);
+		Log.d("DEBUG", apiUrl + params);
 	}
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint

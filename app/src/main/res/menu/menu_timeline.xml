@@ -11,4 +11,11 @@
         android:title="Profile"
         android:onClick="onProfileView"/>
 
+    <item
+        android:id="@+id/compose_tweet"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_compose_tweet"
+        android:onClick="onComposeTweet"
+        android:title="Compose New Tweet" />
+
 </menu>

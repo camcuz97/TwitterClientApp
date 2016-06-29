@@ -5,6 +5,7 @@ import android.text.format.DateUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +15,8 @@ import java.util.Locale;
 /**
  * Created by camcuz97 on 6/27/16.
  */
-public class Tweet {
+@Parcel
+public class Tweet{
     private String body;
     private long uid; // unique id for tweet
     private User user;

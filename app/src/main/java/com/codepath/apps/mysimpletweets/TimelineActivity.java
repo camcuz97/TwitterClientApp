@@ -13,15 +13,20 @@ import android.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
 import com.codepath.apps.mysimpletweets.fragments.HomeTimelineFragment;
 import com.codepath.apps.mysimpletweets.fragments.MentionsTimelineFragment;
+import com.codepath.apps.mysimpletweets.models.Tweet;
+
+import org.parceler.Parcels;
 
 public class TimelineActivity extends AppCompatActivity {
 
+    static final int REQUEST_CODE = 20;
+    HomeTimelineFragment htlf;
+    MentionsTimelineFragment mtlf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-
         //Get the viewpager
         ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);
         //Set the viewpager adapter for the pager
@@ -30,6 +35,8 @@ public class TimelineActivity extends AppCompatActivity {
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         //Attach the tabstrip to the viewpager
         tabStrip.setViewPager(vpPager);
+        htlf = new HomeTimelineFragment();
+        mtlf = new MentionsTimelineFragment();
     }
 
     @Override
@@ -50,6 +57,21 @@ public class TimelineActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onComposeTweet(MenuItem item) {
+        //Launch the compose tweet view
+        Intent i = new Intent(this, ComposeActivity.class);
+        startActivityForResult(i, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
+            htlf.addTweet(tweet);
+        }
+
+    }
+
     //Return the order of the fragments in the view pager
     public class TweetsPagerAdapter extends FragmentPagerAdapter{
         private String tabTitles[] = {"Home", "Mentions"};
@@ -62,10 +84,10 @@ public class TimelineActivity extends AppCompatActivity {
         //The order and creation of fragments within the pager
         public Fragment getItem(int position){
             if(position == 0){
-                return new HomeTimelineFragment();
+                return htlf;
             }
             else if (position == 1){
-                return new MentionsTimelineFragment();
+                return mtlf;
             }
             else{
                 return null;

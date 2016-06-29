@@ -2,10 +2,12 @@ package com.codepath.apps.mysimpletweets.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 /**
  * Created by camcuz97 on 6/27/16.
  */
+@Parcel
 public class User {
     //list attribute
     private String name;

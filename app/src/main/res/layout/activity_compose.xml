@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="10dp">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/background_white"
+    tools:context="com.codepath.apps.mysimpletweets.ComposeActivity">
 
     <FrameLayout
         android:layout_width="50dp"
@@ -34,30 +42,8 @@
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/flFrame"
-        android:layout_toEndOf="@+id/flFrame" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvBody"
-        android:text="New Text"
-        android:textColor="#000000"
-        android:layout_below="@+id/tvUsername"
-        android:layout_toRightOf="@+id/flFrame"
         android:layout_toEndOf="@+id/flFrame"
-        android:textSize="14sp"
-        android:linksClickable="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2m"
-        android:id="@+id/tvTimeStamp"
-        android:textSize="12sp"
-        android:layout_alignParentTop="true"
-        android:textColor="@color/handle_color"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:paddingRight="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,4 +54,25 @@
         android:textSize="12sp"
         android:textColor="@color/handle_color"
         android:layout_toEndOf="@+id/tvUsername" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etTweet"
+        android:enabled="true"
+        android:layout_below="@+id/flFrame"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/post"
+        android:id="@+id/btPost"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onPostTweet"/>
 </RelativeLayout>

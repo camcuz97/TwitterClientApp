@@ -18,6 +18,7 @@ import cz.msebera.android.httpclient.Header;
 public class ProfileActivity extends AppCompatActivity {
     TwitterClient client;
     User user;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,9 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         client = TwitterApplication.getRestClient();
         //Get account info
-        client.getUserInfo(new JsonHttpResponseHandler(){
+        //Get the screen name from the activity that launches this
+        String screenName = getIntent().getStringExtra("screen_name");
+        client.getUserInfo(screenName, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 user = User.fromJSON(response);
@@ -34,8 +37,6 @@ public class ProfileActivity extends AppCompatActivity {
                 populateProfileHeader(user);
             }
         });
-        //Get the screen name from the activity that launches this
-        String screenName = getIntent().getStringExtra("screen_name");
         if(savedInstanceState == null){
             //Create the user timeline fragment
             UserTimelineFragment fragmentUserTimeline = UserTimelineFragment.newInstance(screenName);
@@ -54,8 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
         tvName.setText(user.getName());
         tvTagLine.setText(user.getTagLine());
-        tvFollowers.setText(""+user.getFollowersCount());
-        tvFollowing.setText(""+user.getFriendsCount());
+        tvFollowers.setText(user.getFollowersCount() + " followers");
+        tvFollowing.setText(user.getFriendsCount() + " following");
         Picasso.with(this).load(user.getProfileImageUrl()).into(ivProfileImage);
     }
 

@@ -15,7 +15,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/ivProfileImage"
-            android:padding="6dp"/>
+            android:padding="6dp" />
 
         <ImageView
             android:src="@drawable/frame"

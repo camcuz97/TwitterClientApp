@@ -1,6 +1,7 @@
 package com.codepath.apps.mysimpletweets;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tweet, parent, false);
         }
         // 3. Find the subviews
-        ImageView ivProfileImage = (ImageView) convertView.findViewById(R.id.ivProfileImage);
+        final ImageView ivProfileImage = (ImageView) convertView.findViewById(R.id.ivProfileImage);
         TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
@@ -41,8 +42,18 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
         tvUsername.setText(tweet.getUser().getName());
         tvHandle.setText("@" +tweet.getUser().getScreenName());
         tvBody.setText(tweet.getBody());
+        ivProfileImage.setTag(tweet.getUser().getScreenName());
         ivProfileImage.setImageResource(android.R.color.transparent); //clear out old image for recycled view
         Picasso.with(getContext()).load(tweet.getUser().getProfileImageUrl()).into(ivProfileImage);
+        final String tag = (String) ivProfileImage.getTag();
+        ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ProfileActivity.class);
+                i.putExtra("screen_name", tag);
+                getContext().startActivity(i);
+            }
+        });
         // 5. Return the view to be inserted into the list
         return convertView;
     }

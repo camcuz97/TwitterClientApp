@@ -60,28 +60,39 @@
         android:layout_height="wrap_content"
         android:id="@+id/etTweet"
         android:enabled="true"
-        android:layout_below="@+id/flFrame"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/flFrame"
+        android:gravity="top"
+        android:layout_above="@+id/tvChars" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/post"
         android:id="@+id/btPost"
+        android:onClick="onPostTweet"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="onPostTweet"/>
+        android:layout_alignRight="@+id/tvChars"
+        android:layout_alignEnd="@+id/tvChars" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/char_count"
         android:id="@+id/tvChars"
-        android:layout_below="@+id/etTweet"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_above="@+id/btPost"
+        android:layout_alignRight="@+id/etTweet"
+        android:layout_alignEnd="@+id/etTweet" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvWarning"
+        android:text="TEMPORARY"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btPost"
+        android:layout_toStartOf="@+id/btPost" />
 </RelativeLayout>

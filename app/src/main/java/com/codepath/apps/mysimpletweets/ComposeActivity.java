@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ public class ComposeActivity extends AppCompatActivity {
     Tweet tweet;
     EditText etTweet;
     TextView tvChars;
+    Button btnSubmit;
+    TextView tvWarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class ComposeActivity extends AppCompatActivity {
         });
         etTweet = (EditText) findViewById(R.id.etTweet);
         tvChars = (TextView) findViewById(R.id.tvChars);
+        tvWarning = (TextView) findViewById(R.id.tvWarning);
+        btnSubmit = (Button) findViewById(R.id.btPost);
         etTweet.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -50,9 +55,13 @@ public class ComposeActivity extends AppCompatActivity {
                 tvChars.setText(String.valueOf(140-s.length()));
                 if(s.length() > 140){
                     tvChars.setTextColor(getResources().getColor(R.color.red_text));
+                    btnSubmit.setClickable(false);
+                    tvWarning.setText("Character Limit Exceeded!");
                 }
                 else{
                     tvChars.setTextColor(getResources().getColor(R.color.plain_char_text));
+                    btnSubmit.setClickable(true);
+                    tvWarning.setText("");
                 }
             }
 

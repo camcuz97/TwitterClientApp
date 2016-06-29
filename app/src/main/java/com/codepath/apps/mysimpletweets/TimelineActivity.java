@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,14 +15,18 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.codepath.apps.mysimpletweets.fragments.HomeTimelineFragment;
 import com.codepath.apps.mysimpletweets.fragments.MentionsTimelineFragment;
 import com.codepath.apps.mysimpletweets.models.Tweet;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.parceler.Parcels;
+
+import cz.msebera.android.httpclient.Header;
 
 public class TimelineActivity extends AppCompatActivity {
 
     static final int REQUEST_CODE = 20;
     HomeTimelineFragment htlf;
     MentionsTimelineFragment mtlf;
+    TwitterClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,18 @@ public class TimelineActivity extends AppCompatActivity {
         vpPager.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager()));
         //Find the sliding tabstrip
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        client = TwitterApplication.getRestClient();
+        client.getRateStatus(new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.d("Rate", responseBody.toString());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
         //Attach the tabstrip to the viewpager
         tabStrip.setViewPager(vpPager);
         htlf = new HomeTimelineFragment();

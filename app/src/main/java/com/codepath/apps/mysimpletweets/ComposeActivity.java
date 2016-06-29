@@ -48,6 +48,12 @@ public class ComposeActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Fires right as the text is being changed (even supplies the range of text)
                 tvChars.setText(String.valueOf(140-s.length()));
+                if(s.length() > 140){
+                    tvChars.setTextColor(getResources().getColor(R.color.red_text));
+                }
+                else{
+                    tvChars.setTextColor(getResources().getColor(R.color.plain_char_text));
+                }
             }
 
             @Override

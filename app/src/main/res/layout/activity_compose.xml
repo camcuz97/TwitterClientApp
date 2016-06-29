@@ -83,5 +83,5 @@
         android:id="@+id/tvChars"
         android:layout_below="@+id/etTweet"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>

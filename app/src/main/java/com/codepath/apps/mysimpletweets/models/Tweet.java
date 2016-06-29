@@ -72,10 +72,12 @@ public class Tweet{
             replace = relativeTime.indexOf(" ");
             relativeTime = relativeTime.substring(0,replace);
             relativeTime+="s";
-        } else if(relativeTime.contains("hour")){
+        } else if(relativeTime.contains("hour")) {
             replace = relativeTime.indexOf(" ");
-            relativeTime = relativeTime.substring(0,replace);
-            relativeTime+="h";
+            relativeTime = relativeTime.substring(0, replace);
+            relativeTime += "h";
+        } else if(relativeTime.equals("Yesterday")){
+            relativeTime = "1d";
         } else if(relativeTime.contains("day")){
             replace = relativeTime.indexOf(" ");
             relativeTime = relativeTime.substring(0,replace);

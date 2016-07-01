@@ -77,6 +77,8 @@ public class TimelineActivity extends AppCompatActivity {
     public void onComposeTweet(MenuItem item) {
         //Launch the compose tweet view
         Intent i = new Intent(this, ComposeActivity.class);
+        i.putExtra("id", (long)0);
+        i.putExtra("handle", "");
         startActivityForResult(i, REQUEST_CODE);
     }
 
@@ -87,6 +89,11 @@ public class TimelineActivity extends AppCompatActivity {
             htlf.addTweet(tweet);
         }
 
+    }
+
+    public void onSearch(MenuItem item) {
+        Intent i = new Intent(this, SearchActivity.class);
+        startActivity(i);
     }
 
     //Return the order of the fragments in the view pager

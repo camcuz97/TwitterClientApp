@@ -26,12 +26,12 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by camcuz97 on 6/27/16.
  */
-public class TweetsListFragment extends Fragment {
+public abstract class TweetsListFragment extends Fragment {
 
-    private ArrayList<Tweet> tweets;
-    private TweetsArrayAdapter aTweets;
+    ArrayList<Tweet> tweets;
+    TweetsArrayAdapter aTweets;
     private ListView lvTweets;
-    private SwipeRefreshLayout swipeContainer;
+    SwipeRefreshLayout swipeContainer;
     TwitterClient client;
 
     @Nullable
@@ -51,7 +51,7 @@ public class TweetsListFragment extends Fragment {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                fetchTimelineAsync();
+                refreshTweets();
             }
         });
         // Configure the refreshing colors
@@ -62,6 +62,10 @@ public class TweetsListFragment extends Fragment {
 
 
         return v;
+    }
+
+    protected void refreshTweets() {
+        fetchTimelineAsync();
     }
 
     private void fetchTimelineAsync() {
@@ -93,6 +97,7 @@ public class TweetsListFragment extends Fragment {
 
     public void addAll(List<Tweet> tweets){
         aTweets.addAll(tweets);
+        aTweets.notifyDataSetChanged();
     }
 
     public void addTweet(Tweet tweet){

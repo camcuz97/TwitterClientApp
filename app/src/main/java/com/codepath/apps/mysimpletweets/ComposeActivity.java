@@ -29,11 +29,15 @@ public class ComposeActivity extends AppCompatActivity {
     TextView tvChars;
     Button btnSubmit;
     TextView tvWarning;
+    String repHandle;
+    long repId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+        repHandle = getIntent().getStringExtra("handle");
+        repId = getIntent().getLongExtra("id",(long)0);
         client = TwitterApplication.getRestClient();
         client.getUserInfo(null,new JsonHttpResponseHandler(){
             @Override
@@ -45,6 +49,7 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
         etTweet = (EditText) findViewById(R.id.etTweet);
+        etTweet.setText("@"+repHandle);
         tvChars = (TextView) findViewById(R.id.tvChars);
         tvWarning = (TextView) findViewById(R.id.tvWarning);
         btnSubmit = (Button) findViewById(R.id.btPost);
@@ -92,7 +97,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     public void onPostTweet(View view){
         String post = etTweet.getText().toString();
-        client.postStatus(post, new JsonHttpResponseHandler() {
+        client.postStatus(repId, post, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 tweet = Tweet.fromJSON(response);

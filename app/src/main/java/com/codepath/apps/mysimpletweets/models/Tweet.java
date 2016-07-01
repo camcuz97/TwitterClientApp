@@ -58,7 +58,7 @@ public class Tweet{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        relativeDate = Tweet.formatExact(relativeDate);
+        //relativeDate = Tweet.formatExact(relativeDate);
         return relativeDate;
     }
 

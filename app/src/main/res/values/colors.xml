@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="handle_color" type="color">#B7C0C8</item>
-    <item name="logo_blue" type="color">#1DA1F2</item>
+    <item name="logo_blue" type="color">#55ACEE</item>
     <item name="background_white" type="color">#FFFFFF</item>
     <item name="red_text" type="color">#FF0000</item>
     <item name="plain_char_text" type="color">#787878</item>

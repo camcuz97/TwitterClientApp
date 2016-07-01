@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // 1. Get the tweet
-        Tweet tweet = getItem(position);
+        final Tweet tweet = getItem(position);
         // 2. Inflate the template
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tweet, parent, false);
@@ -37,6 +38,7 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
         TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvTimeStamp = (TextView) convertView.findViewById(R.id.tvTimeStamp);
+        Button btnReply = (Button) convertView.findViewById(R.id.btnReply);
         // 4. Populate data into subviews
         tvTimeStamp.setText(tweet.getTimeAgo());
         tvUsername.setText(tweet.getUser().getName());
@@ -51,6 +53,15 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), ProfileActivity.class);
                 i.putExtra("screen_name", tag);
+                getContext().startActivity(i);
+            }
+        });
+        btnReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ComposeActivity.class);
+                i.putExtra("id", tweet.getUid());
+                i.putExtra("handle", tweet.getUser().getScreenName());
                 getContext().startActivity(i);
             }
         });

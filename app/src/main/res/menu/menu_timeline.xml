@@ -18,4 +18,11 @@
         android:onClick="onComposeTweet"
         android:title="Compose New Tweet" />
 
+    <item android:id="@+id/action_search"
+        android:orderInCategory="5"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom"
+        android:onClick="onSearch" />
+
 </menu>

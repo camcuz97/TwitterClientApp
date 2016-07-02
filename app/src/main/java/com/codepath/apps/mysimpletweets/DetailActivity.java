@@ -21,7 +21,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageView ivMedia;
     ImageView ivReply;
     ImageView ivRetweet;
-    ImageView ivFav;
+    ImageView ivLikes;
 
     Tweet tweet;
 
@@ -52,6 +52,6 @@ public class DetailActivity extends AppCompatActivity {
         tvRetweets = (TextView) findViewById(R.id.tvRetweets);
         ivMedia = (ImageView) findViewById(R.id.ivMedia);
         ivRetweet = (ImageView) findViewById(R.id.ivRetweet);
-        ivFav = (ImageView) findViewById(R.id.ivFav);
+        ivLikes = (ImageView) findViewById(R.id.ivFav);
     }
 }

@@ -19,6 +19,9 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvLikes;
     TextView tvRetweets;
     ImageView ivMedia;
+    ImageView ivReply;
+    ImageView ivRetweet;
+    ImageView ivFav;
 
     Tweet tweet;
 
@@ -36,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         tvLikes.setText("" + tweet.getFavouriteCount() + " favorites");
         tvRetweets.setText("" + tweet.getRetweetCount() + " retweets");
         Picasso.with(this).load(tweet.getMedia()).into(ivMedia);
+
     }
 
     private void setupViews() {
@@ -47,6 +51,7 @@ public class DetailActivity extends AppCompatActivity {
         tvLikes = (TextView) findViewById(R.id.tvLikes);
         tvRetweets = (TextView) findViewById(R.id.tvRetweets);
         ivMedia = (ImageView) findViewById(R.id.ivMedia);
-
+        ivRetweet = (ImageView) findViewById(R.id.ivRetweet);
+        ivFav = (ImageView) findViewById(R.id.ivFav);
     }
 }

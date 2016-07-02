@@ -43,8 +43,8 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
         TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvTimeStamp = (TextView) convertView.findViewById(R.id.tvTimeStamp);
-        TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
-        TextView tvRetweets = (TextView) convertView.findViewById(R.id.tvRetweets);
+        final TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
+        final TextView tvRetweets = (TextView) convertView.findViewById(R.id.tvRetweets);
         ImageView ivReply = (ImageView) convertView.findViewById(R.id.ivReply);
         ImageView ivMedia = (ImageView) convertView.findViewById(R.id.ivMedia);
         if(tweet.getMedia() != null){
@@ -58,9 +58,15 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
         if(tweet.isFavorited() == true){
             ivLikes.setImageResource(R.drawable.ic_fav_true);
         }
+        else{
+            ivLikes.setImageResource(R.drawable.ic_fav);
+        }
         final ImageView ivRetweet = (ImageView) convertView.findViewById(R.id.ivRetweets);
         if(tweet.isRetweeted() == true){
             ivRetweet.setImageResource(R.drawable.ic_retweet_true);
+        }
+        else{
+            ivRetweet.setImageResource(R.drawable.ic_retweet);
         }
         // 4. Populate data into subviews
         tvTimeStamp.setText(tweet.getTimeAgo());
@@ -95,20 +101,22 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
             @Override
             public void onClick(View v) {
                 if(tweet.isFavorited() == true){
-                    client.favorite(tweet.getUid(), new JsonHttpResponseHandler(){
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            tweet.setFavorited(false);
-                            ivLikes.setImageResource(R.drawable.ic_fav_true);
-                        }
-                    });
-                }
-                else{
                     client.unfavorite(tweet.getUid(), new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             tweet.setFavorited(false);
                             ivLikes.setImageResource(R.drawable.ic_fav);
+                            tvLikes.setText((tweet.getFavouriteCount()) + "");
+                        }
+                    });
+                }
+                else{
+                    client.favorite(tweet.getUid(), new JsonHttpResponseHandler(){
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            tweet.setFavorited(true);
+                            ivLikes.setImageResource(R.drawable.ic_fav_true);
+                            tvLikes.setText((tweet.getFavouriteCount() + 1) + "");
                         }
                     });
                 }
@@ -118,20 +126,22 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
             @Override
             public void onClick(View v) {
                 if(tweet.isRetweeted() == true){
-                    client.retweet(tweet.getUid(), new JsonHttpResponseHandler(){
+                    client.unretweet(tweet.getUid(), new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             tweet.setRetweeted(false);
                             ivRetweet.setImageResource(R.drawable.ic_retweet);
+                            tvRetweets.setText((tweet.getRetweetCount())+"");
                         }
                     });
                 }
                 else{
-                    client.unretweet(tweet.getUid(), new JsonHttpResponseHandler(){
+                    client.retweet(tweet.getUid(), new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             tweet.setRetweeted(true);
                             ivRetweet.setImageResource(R.drawable.ic_retweet_true);
+                            tvRetweets.setText((tweet.getRetweetCount() + 1)+ "");
                         }
                     });
                 }

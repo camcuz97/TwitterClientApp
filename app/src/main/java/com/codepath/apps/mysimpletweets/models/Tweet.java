@@ -45,8 +45,11 @@ public class Tweet{
             tweet.retweetCount = jsonObject.getInt("retweet_count");
             tweet.favorited = jsonObject.getBoolean("favorited");
             tweet.retweeted = jsonObject.getBoolean("retweeted");
-            JSONArray temp = jsonObject.getJSONObject("entities").getJSONArray("media");
-            tweet.media = temp.getJSONObject(0).getString("media_url");
+            JSONArray temp = jsonObject.getJSONObject("entities").optJSONArray("media");
+            if(temp != null && temp.length() > 0){
+                tweet.media = temp.getJSONObject(0).getString("media_url");
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();

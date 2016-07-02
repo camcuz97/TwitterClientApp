@@ -17,6 +17,7 @@ public class User {
     private String tagLine;
     private int followersCount;
     private int friendsCount;
+    private String banner;
 
     public String getName() {
         return name;
@@ -46,6 +47,10 @@ public class User {
         return friendsCount;
     }
 
+    public String getBanner() {
+        return banner;
+    }
+
     //deserialize user
     public static User fromJSON(JSONObject json){
         User u = new User();
@@ -57,6 +62,7 @@ public class User {
             u.tagLine = json.getString("description");
             u.followersCount = json.getInt("followers_count");
             u.friendsCount = json.getInt("friends_count");
+            u.banner = json.getString("profile_banner_url");
 
         } catch (JSONException e) {
             e.printStackTrace();

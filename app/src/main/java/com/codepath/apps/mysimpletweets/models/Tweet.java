@@ -22,6 +22,10 @@ public class Tweet{
     private User user;
     private String createdAt;
     private String timeAgo;
+    private int favouriteCount;
+    private int retweetCount;
+    private boolean favorited;
+    private boolean retweeted;
 
     //Deserialize the Json
     //Tweet.fromJson("{...}") => tweet
@@ -36,6 +40,10 @@ public class Tweet{
             tweet.createdAt = jsonObject.getString("created_at");
             tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
             tweet.timeAgo = tweet.getRelativeTimeAgo(tweet.createdAt);
+            tweet.favouriteCount = jsonObject.getInt("favorite_count");
+            tweet.retweetCount = jsonObject.getInt("retweet_count");
+            tweet.favorited = jsonObject.getBoolean("favorited");
+            tweet.retweeted = jsonObject.getBoolean("retweeted");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -43,6 +51,31 @@ public class Tweet{
 
         //return the tweet object
         return tweet;
+    }
+
+
+    public boolean isFavorited() {
+        return favorited;
+    }
+
+    public boolean isRetweeted() {
+        return retweeted;
+    }
+
+    public void setFavorited(boolean favorited) {
+        this.favorited = favorited;
+    }
+
+    public void setRetweeted(boolean retweeted) {
+        this.retweeted = retweeted;
+    }
+
+    public int getFavouriteCount() {
+        return favouriteCount;
+    }
+
+    public int getRetweetCount() {
+        return retweetCount;
     }
 
     public String getRelativeTimeAgo(String rawJsonDate) {

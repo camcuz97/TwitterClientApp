@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:descendantFocusability="blocksDescendants">
 
     <FrameLayout
         android:layout_width="50dp"
@@ -24,6 +25,10 @@
 
     </FrameLayout>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/flFrame"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,17 +75,48 @@
         android:textColor="@color/handle_color"
         android:layout_toEndOf="@+id/tvUsername" />
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt;-"
-        android:id="@+id/btnReply"
-        android:background="#FFFFFF"
+        android:id="@+id/ivRetweets"
+        android:src="@drawable/ic_retweet"
+        android:layout_toLeftOf="@+id/tvRetweets"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_alignBottom="@+id/ivLikes" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLikes"
+        android:src="@drawable/ic_fav"
+        android:layout_below="@+id/tvBody"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivReply"
+        android:src="@drawable/ic_reply"
+        android:layout_below="@+id/tvBody"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="10dp"
-        android:layout_toLeftOf="@+id/tvBody"
-        android:layout_toStartOf="@+id/tvBody"
-        android:layout_below="@+id/flFrame"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvRetweets"
+        android:layout_below="@id/tvBody"
+        android:layout_alignRight="@+id/tvTimeStamp"
+        android:layout_alignEnd="@+id/tvTimeStamp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvLikes"
+        android:layout_below="@id/tvBody"
+        android:layout_toRightOf="@+id/ivLikes"
+        android:layout_toEndOf="@+id/ivLikes" />
+
 </RelativeLayout>

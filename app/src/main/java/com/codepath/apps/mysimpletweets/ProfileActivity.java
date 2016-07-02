@@ -53,6 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
         TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
         ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+//        ImageView ivBanner = (ImageView) findViewById(R.id.ivBanner);
+//        Picasso.with(this).load(user.getBanner()).into(ivBanner);
         tvName.setText(user.getName());
         tvTagLine.setText(user.getTagLine());
         tvFollowers.setText(user.getFollowersCount() + " followers");

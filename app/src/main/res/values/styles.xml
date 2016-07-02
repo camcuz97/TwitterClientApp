@@ -17,13 +17,13 @@
         <item name="android:titleTextStyle">@style/MyActionBar.TitleTextStyle</item>
 
         <!-- Support library compatibility -->
-        <item name="background">@color/background_white</item>
+        <item name="background">@color/logo_blue</item>
         <item name="titleTextStyle">@style/MyActionBar.TitleTextStyle</item>
     </style>
 
     <style name="MyActionBar.TitleTextStyle"
         parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/primary_blue</item>
+        <item name="android:textColor">@color/text_white</item>
     </style>
 
     <style name="SearchViewTheme" parent="Widget.AppCompat.Light.SearchView">
@@ -34,7 +34,7 @@
     </style>
 
     <style name="MyActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
-        <item name="android:textColor">@color/primary_blue</item>
+        <item name="android:textColor">@color/text_white</item>
     </style>
 
 </resources>

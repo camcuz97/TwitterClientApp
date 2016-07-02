@@ -26,6 +26,7 @@ public class Tweet{
     private int retweetCount;
     private boolean favorited;
     private boolean retweeted;
+    private String media;
 
     //Deserialize the Json
     //Tweet.fromJson("{...}") => tweet
@@ -44,6 +45,8 @@ public class Tweet{
             tweet.retweetCount = jsonObject.getInt("retweet_count");
             tweet.favorited = jsonObject.getBoolean("favorited");
             tweet.retweeted = jsonObject.getBoolean("retweeted");
+            JSONArray temp = jsonObject.getJSONObject("entities").getJSONArray("media");
+            tweet.media = temp.getJSONObject(0).getString("media_url");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -53,6 +56,9 @@ public class Tweet{
         return tweet;
     }
 
+    public String getMedia() {
+        return media;
+    }
 
     public boolean isFavorited() {
         return favorited;

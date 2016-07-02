@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ivLikes"
         android:src="@drawable/ic_fav"
-        android:layout_below="@+id/tvBody"
+        android:layout_below="@+id/ivMedia"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ivReply"
         android:src="@drawable/ic_reply"
-        android:layout_below="@+id/tvBody"
+        android:layout_below="@+id/ivMedia"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvRetweets"
-        android:layout_below="@id/tvBody"
+        android:layout_alignTop="@+id/ivRetweets"
         android:layout_alignRight="@+id/tvTimeStamp"
         android:layout_alignEnd="@+id/tvTimeStamp" />
 
@@ -115,8 +115,16 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvLikes"
-        android:layout_below="@id/tvBody"
+        android:layout_below="@+id/ivMedia"
         android:layout_toRightOf="@+id/ivLikes"
         android:layout_toEndOf="@+id/ivLikes" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivMedia"
+        android:src="@drawable/ic_launcher"
+        android:layout_below="@+id/tvBody"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

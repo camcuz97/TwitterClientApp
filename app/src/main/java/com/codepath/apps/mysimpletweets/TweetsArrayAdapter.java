@@ -46,6 +46,14 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet>{
         TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
         TextView tvRetweets = (TextView) convertView.findViewById(R.id.tvRetweets);
         ImageView ivReply = (ImageView) convertView.findViewById(R.id.ivReply);
+        ImageView ivMedia = (ImageView) convertView.findViewById(R.id.ivMedia);
+        if(tweet.getMedia() != null){
+            ivMedia.setVisibility(View.VISIBLE);
+            Picasso.with(getContext()).load(tweet.getMedia()).into(ivMedia);
+        }
+        else{
+            ivMedia.setVisibility(View.GONE);
+        }
         final ImageView ivLikes = (ImageView) convertView.findViewById(R.id.ivLikes);
         if(tweet.isFavorited() == true){
             ivLikes.setImageResource(R.drawable.ic_fav_true);

@@ -49,7 +49,9 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
         etTweet = (EditText) findViewById(R.id.etTweet);
-        etTweet.setText("@"+repHandle);
+        if(!repHandle.equals("")){
+            etTweet.setText("@"+repHandle);
+        }
         tvChars = (TextView) findViewById(R.id.tvChars);
         tvWarning = (TextView) findViewById(R.id.tvWarning);
         btnSubmit = (Button) findViewById(R.id.btPost);
